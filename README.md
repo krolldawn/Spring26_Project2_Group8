@@ -1,10 +1,15 @@
 ## Group Project 2- Kevin Roldan, Linda Zavala, Negeen Agharokh 
 
 #Day 1: Project Setup & Data Import 
+<<<<<<< HEAD
+#Task 2
+
+=======
 library(readr)
 NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
 View(NHIS_Data_2021)
 str(NHIS_Data_2021)
+>>>>>>> fc4727f05e60ad682fcb81971dd834f6ed8da72c
 summary(NHIS_Data_2021)
 head(NHIS_Data_2021)
 

@@ -1,0 +1,11 @@
+install.packages("tidyverse")
+install.packages("haven")
+library(tidyverse)
+library(haven)
+
+NHIS_Data_2021 <- read.csv("C:/Users/user/OneDrive/Desktop/NHIS _Data_2021.csv")
+summary(NHIS_Data_2021)
+head(NHIS_Data_2021)
+str(NHIS_Data_2021)
+summary(NHIS_Data_2021)
+str(NHIS_Data_2021)
