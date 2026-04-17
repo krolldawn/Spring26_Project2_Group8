@@ -1,6 +1,8 @@
 ## Group Project 2- Kevin Roldan, Linda Zavala, Negeen Agharokh 
 
 #Day 1: Project Setup & Data Import 
+#Task 2
+
 summary(NHIS_Data_2021)
 
 
