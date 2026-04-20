@@ -89,61 +89,61 @@ write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cle
 ##Day 3: Univariate & Bivariate Analysis & Visualization
 
 library(tidyverse) #load tidyverse packages
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")  #import dataset
+NHIS_clean <- read.csv("Data/NHIS_clean.csv")  #import dataset
 
-summary(NHIS_Data_2021$AGEP_A) #summary stats on mean,median, mode...
-summary(NHIS_Data_2021$WEIGHTLBTC_A) #summary stats for weight
-summary(NHIS_Data_2021$HEIGHTTC_A)  #summary stats for height
+summary(NHIS_clean$AGEP_A) #summary stats on mean,median, mode...
+summary(NHIS_clean$WEIGHTLBTC_A) #summary stats for weight
+summary(NHIS_clean$HEIGHTTC_A)  #summary stats for height
 
 #Extra Stats
-mean(NHIS_Data_2021$AGEP_A, na.rm = TRUE)  #average age while removing missing values
-sd(NHIS_Data_2021$AGEP_A, na.rm = TRUE)  #standard deviation
+mean(NHIS_clean$AGEP_A, na.rm = TRUE)  #average age while removing missing values
+sd(NHIS_clean$AGEP_A, na.rm = TRUE)  #standard deviation
 
 #Histograms
-hist(NHIS_Data_2021$AGEP_A, main="Age Distribution", xlab="Age") #histogram for age
-hist(NHIS_Data_2021$WEIGHTLBTC_A, main="Weight Distribution", xlab="Weight")
-hist(NHIS_Data_2021$HEIGHTTC_A, main="Height Distribution", xlab="Height")
+hist(NHIS_clean$AGEP_A, main="Age Distribution", xlab="Age") #histogram for age
+hist(NHIS_clean$WEIGHTLBTC_A, main="Weight Distribution", xlab="Weight")
+hist(NHIS_clean$HEIGHTTC_A, main="Height Distribution", xlab="Height")
 ```
 The code loads the dataset and explores key variables (age, weight, and height) by generating summary statistics, calculating additional measures for age, and creating histograms to visualize their distributions.The histogram shows that most weight values cluster between about 120 and 250 pounds, indicating a right-skewed distribution, while a small number of extremely high values near 1000 pounds suggest strong outliers or possible data entry errors.
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = AGEP_A)) + #plot using dataset
+ggplot(NHIS_clean, aes(x = AGEP_A)) + #plot using dataset
   geom_histogram(bins = 30) + #histogram within 30 bins
   labs(title="Age Distribution", x="Age", y="Count")  #title 
 ```
 The code uses ggplot2 to create a histogram of the age variable, displaying its distribution with labeled axes and a descriptive title.The histogram shows that ages are fairly spread out across a wide range (roughly 20 to 80), indicating a relatively even distribution, with a slight concentration in middle-aged groups and a few extreme values near the upper end suggesting potential outliers.
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = WEIGHTLBTC_A)) + #ggplot
+ggplot(NHIS_clean, aes(x = WEIGHTLBTC_A)) + #ggplot
   geom_histogram(bins = 30) +  #histogram of weight within 30 bins
   labs(title="Weight Distribution", x="Weight", y="Count") #add tittle
 ```
 The code uses ggplot2 to visualize the distribution of weight by creating a histogram with appropriate labels and a descriptive title.The histogram shows that most weight values are concentrated between about 120 and 250 pounds, forming a right-skewed distribution, while extremely high values near 1000 pounds indicate clear outliers or likely data entry errors.
 ```{R}
-ggplot(NHIS_Data_2021, aes(x = HEIGHTTC_A)) + #ggplot
+ggplot(NHIS_clean, aes(x = HEIGHTTC_A)) + #ggplot
   geom_histogram(bins = 30) + #histogram of height within 30 bins
   labs(title="Height Distribution", x="Height", y="Count") #add tittle
 ```
 The code uses ggplot2 to create a histogram that visualizes the distribution of height, with clear axis labels and a descriptive title.The histogram shows that most height values are concentrated between about 60 and 72 inches, indicating a roughly normal distribution, while a small group of unusually high values (around 95–100 inches) suggests the presence of potential outliers or data entry errors.
 ```{r}
 #Boxplots
-boxplot(NHIS_Data_2021$AGEP_A, main="Age Boxplot") #boxplot for age
-boxplot(NHIS_Data_2021$WEIGHTLBTC_A, main="Weight Boxplot") #boxplot for weight
-boxplot(NHIS_Data_2021$HEIGHTTC_A, main="Height Boxplot") #boxplot for height
+boxplot(NHIS_clean$AGEP_A, main="Age Boxplot") #boxplot for age
+boxplot(NHIS_clean$WEIGHTLBTC_A, main="Weight Boxplot") #boxplot for weight
+boxplot(NHIS_clean$HEIGHTTC_A, main="Height Boxplot") #boxplot for height
 ```
 The code generates boxplots for age, weight, and height to visualize their distributions, highlighting the median, spread, and any potential outliers in each variable.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = AGEP_A)) + #ggplot on y axis
+ggplot(NHIS_clean, aes(y = AGEP_A)) + #ggplot on y axis
   geom_boxplot() + #boxplot for age including median, quartiles, outliers
   labs(title="Age Boxplot") #add tittle
 ```
 The code uses ggplot2 to create a boxplot of age, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that the median age is around the mid-50s, with the middle 50% of values spread roughly between the late 30s and late 60s, indicating moderate variability, and no extreme outliers are clearly visible.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
+ggplot(NHIS_clean, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
   geom_boxplot() + #box plot to distribute data
   labs(title="Weight Boxplot") #tittle
 ```
 The code uses ggplot2 to create a boxplot of weight, visualizing its distribution, central tendency, and any potential outliers.The boxplot shows that most weight values are concentrated between roughly 140 and 220 pounds with a median around 180, indicating moderate spread, while a very extreme outlier near 1000 pounds highlights a likely data entry error or unusual value.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = HEIGHTTC_A)) + #ggplot to y axis
+ggplot(NHIS_clean, aes(y = HEIGHTTC_A)) + #ggplot to y axis
   geom_boxplot() + #distribution to height
   labs(title="Height Boxplot") #add tittle
 ```
@@ -152,102 +152,102 @@ The code uses ggplot2 to create a boxplot of height, allowing visualization of i
 #Qualitative Variables
 #Kevin
 #Frequency Tables
-table(NHIS_Data_2021$SEX_A)
-table(NHIS_Data_2021$HISPALLP_A)
-table(NHIS_Data_2021$EDUCP_A)
-table(NHIS_Data_2021$PHSTAT_A)
-table(NHIS_Data_2021$LSATIS4R_A)
+table(NHIS_clean$SEX_A)
+table(NHIS_clean$HISPALLP_A)
+table(NHIS_clean$EDUCP_recode)
+table(NHIS_clean$PHSTAT_A)
+table(NHIS_clean$LSATIS4R_A)
 ```
 ```{r}
 #Bar Plots
-barplot(table(NHIS_Data_2021$SEX_A), main="Sex Distribution")
-barplot(table(NHIS_Data_2021$HISPALLP_A), main="Hispanic Status")
-barplot(table(NHIS_Data_2021$EDUCP_A), main="Education Level")
-barplot(table(NHIS_Data_2021$PHSTAT_A), main="Health Status")
-barplot(table(NHIS_Data_2021$LSATIS4R_A), main="Life Satisfaction")
+barplot(table(NHIS_clean$SEX_A), main="Sex Distribution")
+barplot(table(NHIS_clean$HISPALLP_A), main="Hispanic Status")
+barplot(table(NHIS_clean$EDUCP_recode), main="Education Level")
+barplot(table(NHIS_clean$PHSTAT_A), main="Health Status")
+barplot(table(NHIS_clean$LSATIS4R_A), main="Life Satisfaction")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(SEX_A))) +
+ggplot(NHIS_clean, aes(x = factor(SEX_A))) +
   geom_bar() +
   labs(title="Sex Distribution", x="Sex", y="Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(HISPALLP_A))) +
+ggplot(NHIS_clean, aes(x = factor(HISPALLP_A))) +
   geom_bar() +
   labs(title="Hispanic Status", x="Category", y="Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(EDUCP_A))) +
+ggplot(NHIS_clean, aes(x = factor(EDUCP_recode))) +
   geom_bar() +
   labs(title="Education Level", x="Category", y="Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(PHSTAT_A))) +
+ggplot(NHIS_clean, aes(x = factor(PHSTAT_A))) +
   geom_bar() +
   labs(title="Health Status", x="Category", y="Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(LSATIS4R_A))) +
+ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
   geom_bar() +
   labs(title="Life Satisfaction", x="Category", y="Count")
 ```
 ```{r}
 #Qualitative Variables
 #Frequency tables
-table(NHIS_Data_2021$SEX_A)
-table(NHIS_Data_2021$HISPALLP_A)
-table(NHIS_Data_2021$EDUCP_A)
-table(NHIS_Data_2021$PHSTAT_A)
-table(NHIS_Data_2021$LSATIS4R_A)
+table(NHIS_clean$SEX_A)
+table(NHIS_clean$HISPALLP_A)
+table(NHIS_clean$EDUCP_recode)
+table(NHIS_clean$PHSTAT_A)
+table(NHIS_clean$LSATIS4R_A)
 ```
 ```{r}
 #Bar Plots
-barplot(table(NHIS_Data_2021$SEX_A),
+barplot(table(NHIS_clean$SEX_A),
         main = "Sex Distribution",
         xlab = "Sex", ylab = "Count")
 ```
 ```{r}
-barplot(table(NHIS_Data_2021$HISPALLP_A),
+barplot(table(NHIS_clean$HISPALLP_A),
         main = "Hispanic Status",
         xlab = "Category", ylab = "Count")
 ```
 ```{r}
-barplot(table(NHIS_Data_2021$EDUCP_A),
+barplot(table(NHIS_clean$EDUCP_recode),
         main = "Education Level",
         xlab = "Category", ylab = "Count")
 ```
 ```{r}
-barplot(table(NHIS_Data_2021$PHSTAT_A),
+barplot(table(NHIS_clean$PHSTAT_A),
         main = "Health Status",
         xlab = "Category", ylab = "Count")
 ```
 ```{r}
-barplot(table(NHIS_Data_2021$LSATIS4R_A),
+barplot(table(NHIS_clean$LSATIS4R_A),
         main = "Life Satisfaction",
         xlab = "Category", ylab = "Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(SEX_A))) +
+ggplot(NHIS_clean, aes(x = factor(SEX_A))) +
   geom_bar() +
   labs(title = "Sex Distribution", x = "Sex", y = "Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(HISPALLP_A))) +
+ggplot(NHIS_clean, aes(x = factor(HISPALLP_A))) +
   geom_bar() +
   labs(title = "Hispanic Status", x = "Category", y = "Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(EDUCP_A))) +
+ggplot(NHIS_clean, aes(x = factor(EDUCP_recode))) +
   geom_bar() +
   labs(title = "Education Level", x = "Category", y = "Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(PHSTAT_A))) +
+ggplot(NHIS_clean, aes(x = factor(PHSTAT_A))) +
   geom_bar() +
   labs(title = "Health Status", x = "Category", y = "Count")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(LSATIS4R_A))) +
+ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
   geom_bar() +
   labs(title = "Life Satisfaction", x = "Category", y = "Count")
 ```
@@ -256,31 +256,31 @@ ggplot(NHIS_Data_2021, aes(x = factor(LSATIS4R_A))) +
 #Linda
 
 library(tidyverse)
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
+NHIS_clean <- read.csv("Data/NHIS_clean.csv")
 
 #Quantitative vs. Qualitative:
 boxplot(AGEP_A ~ SEX_A,
-        data = NHIS_Data_2021,
+        data = NHIS_clean,
         main = "Age by Sex",
         xlab = "Sex",
         ylab = "Age")
 ```
 ```{r}
-boxplot(AGEP_A ~ EDUCP_A,
-        data = NHIS_Data_2021,
+boxplot(AGEP_A ~ EDUCP_recode,
+        data = NHIS_clean,
         main = "Age by Education Level",
         xlab = "Education Level",
         ylab = "Age")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(SEX_A), y = AGEP_A)) +
+ggplot(NHIS_clean, aes(x = factor(SEX_A), y = AGEP_A)) +
   geom_boxplot() +
   labs(title = "Age by Sex",
        x = "Sex",
        y = "Age")
 ```
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = factor(EDUCP_A), y = AGEP_A)) +
+ggplot(NHIS_clean, aes(x = factor(EDUCP_recode), y = AGEP_A)) +
   geom_boxplot() +
   labs(title = "Age by Education Level",
        x = "Education Level",
@@ -288,7 +288,7 @@ ggplot(NHIS_Data_2021, aes(x = factor(EDUCP_A), y = AGEP_A)) +
 ```
 ```{r}
 #Qualitative vs. Qualitative:
-ggplot(NHIS_Data_2021, 
+ggplot(NHIS_clean, 
        aes(x = factor(PHSTAT_A), fill = factor(LSATIS4R_A))) +
   geom_bar(position = "dodge") +
   labs(title = "General Health vs Life Satisfaction",
@@ -297,20 +297,20 @@ ggplot(NHIS_Data_2021,
        fill = "Life Satisfaction")
 ```
 #Quantitative vs. Quantitative:
-plot(NHIS_Data_2021$HEIGHTTC_A,
-     NHIS_Data_2021$WEIGHTLBTC_A,
+plot(NHIS_clean$HEIGHTTC_A,
+     NHIS_clean$WEIGHTLBTC_A,
      main = "Height vs Weight",
      xlab = "Height",
      ylab = "Weight")
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A)) +
+ggplot(NHIS_clean, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A)) +
   geom_point(alpha = 0.5) +
   labs(title = "Height vs Weight",
        x = "Height",
        y = "Weight")
 ```
-cor(NHIS_Data_2021$HEIGHTTC_A,
-    NHIS_Data_2021$WEIGHTLBTC_A,
+cor(NHIS_clean$HEIGHTTC_A,
+    NHIS_clean$WEIGHTLBTC_A,
     use = "complete.obs")
 
 #There is a strong positive relationship between height and weight, indicating that as height increases, weight also tends to increase. The high correlation coefficient (r = 0.77) suggests a strong linear association between the two variables.
@@ -322,16 +322,16 @@ cor(NHIS_Data_2021$HEIGHTTC_A,
 ##Day 4: Multivariate Analysis & Report Drafting
 
 multi_data <- NHIS_clean %>%
-  select(HEIGHTTC_A, WEIGHTLBTC_A, SEX_A, EDUCP_A, PHSTAT_A, AGEP_A) %>%
+  select(HEIGHTTC_A, WEIGHTLBTC_A, SEX_A, EDUCP_recode, PHSTAT_A, AGEP_A) %>%
   na.omit()
 
 multi_data$SEX_A <- as.factor(multi_data$SEX_A)
-multi_data$EDUCP_A <- as.factor(multi_data$EDUCP_A)
+multi_data$EDUCP_recode <- as.factor(multi_data$EDUCP_recode)
 multi_data$PHSTAT_A <- as.factor(multi_data$PHSTAT_A)
 
 ggplot(multi_data, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A, color = SEX_A)) +
   geom_point(alpha = 0.6) +
-  facet_wrap(~ EDUCP_A) +
+  facet_wrap(~ EDUCP_recode) +
   labs(
     title = "Height vs Weight by Sex and Education",
     x = "Height (cm)",
