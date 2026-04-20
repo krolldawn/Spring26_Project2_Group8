@@ -14,22 +14,24 @@ library(psych)
 ```
 
 
-# Day 1: Project Setup & Data Import 
+
 
 ```{r}
+# Day 1: Project Setup & Data Import 
 
-library(readr)
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
-View(NHIS_Data_2021)
-str(NHIS_Data_2021)
-summary(NHIS_Data_2021)
-head(NHIS_Data_2021)
+library(readr) #loaded readr package for data import functions
+NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv") #imported NHIS 2021 dataset from Data folder
+View(NHIS_Data_2021) #opened dataset in spreadsheet view
+str(NHIS_Data_2021) #displayed structure of dataset
+summary(NHIS_Data_2021) #generated summary statistics for all variables to check ranges and missing values
+head(NHIS_Data_2021) #displayed first 6 rows of dataset
 ```
 
-# Day 2: Data Cleaning & Management
+
 
 ```{r}
 ##Day 2: Data Cleaning & Management
+
 #Task 1: Variable Selection & Missing Value Check
 library(tidyverse) #loaded tidyverse
 
@@ -81,10 +83,10 @@ write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cle
 
 ```
 
-# Day 3: Univariate & Bivariate Analysis & Visualization
+
 
 ```{r}
-# 03_univariate_analysis.R
+##Day 3: Univariate & Bivariate Analysis & Visualization
 
 library(tidyverse)
 NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
@@ -271,13 +273,13 @@ cor(NHIS_Data_2021$HEIGHTTC_A,
     NHIS_Data_2021$WEIGHTLBTC_A,
     use = "complete.obs")
 
+#There is a strong positive relationship between height and weight, indicating that as height increases, weight also tends to increase. The high correlation coefficient (r = 0.77) suggests a strong linear association between the two variables.
 ```
 
-There is a strong positive relationship between height and weight, indicating that as height increases, weight also tends to increase. The high correlation coefficient (r = 0.77) suggests a strong linear association between the two variables.
 
-# Day 4: Multivariate Analysis & Report Drafting
 
 ```{r}
+##Day 4: Multivariate Analysis & Report Drafting
 
 multi_data <- NHIS_clean %>%
   select(HEIGHTTC_A, WEIGHTLBTC_A, SEX_A, EDUCP_A, PHSTAT_A, AGEP_A) %>%
@@ -301,10 +303,9 @@ ggplot(multi_data, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A, color = SEX_A)) +
 ```
 
 
-# Day 5: Finalizing, Communicating & Submission
 
 ```{r}
-
+# Day 5: Finalizing, Communicating & Submission
 
 ```
 
