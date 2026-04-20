@@ -88,58 +88,66 @@ write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cle
 ```{r}
 ##Day 3: Univariate & Bivariate Analysis & Visualization
 
-library(tidyverse)
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
+library(tidyverse) #load tidyverse packages
+NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")  #import dataset
 
-summary(NHIS_Data_2021$AGEP_A)
-summary(NHIS_Data_2021$WEIGHTLBTC_A)
-summary(NHIS_Data_2021$HEIGHTTC_A)
+summary(NHIS_Data_2021$AGEP_A) #summary stats on mean,median, mode...
+summary(NHIS_Data_2021$WEIGHTLBTC_A) #summary stats for weight
+summary(NHIS_Data_2021$HEIGHTTC_A)  #summary stats for height
 
 #Extra Stats
-mean(NHIS_Data_2021$AGEP_A, na.rm = TRUE)
-sd(NHIS_Data_2021$AGEP_A, na.rm = TRUE)
+mean(NHIS_Data_2021$AGEP_A, na.rm = TRUE)  #average age while removing missing values
+sd(NHIS_Data_2021$AGEP_A, na.rm = TRUE)  #standard deviation
 
 #Histograms
-hist(NHIS_Data_2021$AGEP_A, main="Age Distribution", xlab="Age")
+hist(NHIS_Data_2021$AGEP_A, main="Age Distribution", xlab="Age") #histogram for age
 hist(NHIS_Data_2021$WEIGHTLBTC_A, main="Weight Distribution", xlab="Weight")
 hist(NHIS_Data_2021$HEIGHTTC_A, main="Height Distribution", xlab="Height")
 ```
+The code loads the dataset and explores key variables (age, weight, and height) by generating summary statistics, calculating additional measures for age, and creating histograms to visualize their distributions.The histogram shows that most weight values cluster between about 120 and 250 pounds, indicating a right-skewed distribution, while a small number of extremely high values near 1000 pounds suggest strong outliers or possible data entry errors.
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = AGEP_A)) +
-  geom_histogram(bins = 30) +
-  labs(title="Age Distribution", x="Age", y="Count")
+ggplot(NHIS_Data_2021, aes(x = AGEP_A)) + #plot using dataset
+  geom_histogram(bins = 30) + #histogram within 30 bins
+  labs(title="Age Distribution", x="Age", y="Count")  #title 
 ```
+The code uses ggplot2 to create a histogram of the age variable, displaying its distribution with labeled axes and a descriptive title.The histogram shows that ages are fairly spread out across a wide range (roughly 20 to 80), indicating a relatively even distribution, with a slight concentration in middle-aged groups and a few extreme values near the upper end suggesting potential outliers.
 ```{r}
-ggplot(NHIS_Data_2021, aes(x = WEIGHTLBTC_A)) +
-  geom_histogram(bins = 30) +
-  labs(title="Weight Distribution", x="Weight", y="Count")
+ggplot(NHIS_Data_2021, aes(x = WEIGHTLBTC_A)) + #ggplot
+  geom_histogram(bins = 30) +  #histogram of weight within 30 bins
+  labs(title="Weight Distribution", x="Weight", y="Count") #add tittle
 ```
+The code uses ggplot2 to visualize the distribution of weight by creating a histogram with appropriate labels and a descriptive title.The histogram shows that most weight values are concentrated between about 120 and 250 pounds, forming a right-skewed distribution, while extremely high values near 1000 pounds indicate clear outliers or likely data entry errors.
 ```{R}
-ggplot(NHIS_Data_2021, aes(x = HEIGHTTC_A)) +
-  geom_histogram(bins = 30) +
-  labs(title="Height Distribution", x="Height", y="Count")
+ggplot(NHIS_Data_2021, aes(x = HEIGHTTC_A)) + #ggplot
+  geom_histogram(bins = 30) + #histogram of height within 30 bins
+  labs(title="Height Distribution", x="Height", y="Count") #add tittle
 ```
+The code uses ggplot2 to create a histogram that visualizes the distribution of height, with clear axis labels and a descriptive title.The histogram shows that most height values are concentrated between about 60 and 72 inches, indicating a roughly normal distribution, while a small group of unusually high values (around 95–100 inches) suggests the presence of potential outliers or data entry errors.
 ```{r}
 #Boxplots
-boxplot(NHIS_Data_2021$AGEP_A, main="Age Boxplot")
-boxplot(NHIS_Data_2021$WEIGHTLBTC_A, main="Weight Boxplot")
-boxplot(NHIS_Data_2021$HEIGHTTC_A, main="Height Boxplot")
+boxplot(NHIS_Data_2021$AGEP_A, main="Age Boxplot") #boxplot for age
+boxplot(NHIS_Data_2021$WEIGHTLBTC_A, main="Weight Boxplot") #boxplot for weight
+boxplot(NHIS_Data_2021$HEIGHTTC_A, main="Height Boxplot") #boxplot for height
 ```
+The code generates boxplots for age, weight, and height to visualize their distributions, highlighting the median, spread, and any potential outliers in each variable.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = AGEP_A)) +
-  geom_boxplot() +
-  labs(title="Age Boxplot")
+ggplot(NHIS_Data_2021, aes(y = AGEP_A)) + #ggplot on y axis
+  geom_boxplot() + #boxplot for age including median, quartiles, outliers
+  labs(title="Age Boxplot") #add tittle
 ```
+The code uses ggplot2 to create a boxplot of age, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that the median age is around the mid-50s, with the middle 50% of values spread roughly between the late 30s and late 60s, indicating moderate variability, and no extreme outliers are clearly visible.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = WEIGHTLBTC_A)) +
-  geom_boxplot() +
-  labs(title="Weight Boxplot")
+ggplot(NHIS_Data_2021, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
+  geom_boxplot() + #box plot to distribute data
+  labs(title="Weight Boxplot") #tittle
 ```
+The code uses ggplot2 to create a boxplot of weight, visualizing its distribution, central tendency, and any potential outliers.The boxplot shows that most weight values are concentrated between roughly 140 and 220 pounds with a median around 180, indicating moderate spread, while a very extreme outlier near 1000 pounds highlights a likely data entry error or unusual value.
 ```{r}
-ggplot(NHIS_Data_2021, aes(y = HEIGHTTC_A)) +
-  geom_boxplot() +
-  labs(title="Height Boxplot")
+ggplot(NHIS_Data_2021, aes(y = HEIGHTTC_A)) + #ggplot to y axis
+  geom_boxplot() + #distribution to height
+  labs(title="Height Boxplot") #add tittle
 ```
+The code uses ggplot2 to create a boxplot of height, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that most height values fall between about 64 and 70 inches with a median around 67 inches, indicating low to moderate variability, while several high values near 95–100 inches appear as outliers, suggesting possible data entry errors.
 ```{r}
 #Qualitative Variables
 #Kevin
