@@ -279,7 +279,7 @@ There is a strong positive relationship between height and weight, indicating th
 
 ```{r}
 
-multi_data <- NHIS_Data_2021 %>%
+multi_data <- NHIS_clean %>%
   select(HEIGHTTC_A, WEIGHTLBTC_A, SEX_A, EDUCP_A, PHSTAT_A, AGEP_A) %>%
   na.omit()
 
