@@ -15,10 +15,9 @@ library(psych)
 
 
 
-
-```{r}
 # Day 1: Project Setup & Data Import 
 
+```{r}
 library(readr) #loaded readr package for data import functions
 NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv") #imported NHIS 2021 dataset from Data folder
 View(NHIS_Data_2021) #opened dataset in spreadsheet view
@@ -28,9 +27,8 @@ head(NHIS_Data_2021) #displayed first 6 rows of dataset
 ```
 
 
-
+# Day 2: Data Cleaning & Management
 ```{r}
-##Day 2: Data Cleaning & Management
 
 #Task 1: Variable Selection & Missing Value Check
 library(tidyverse) #loaded tidyverse
@@ -83,10 +81,9 @@ write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cle
 
 ```
 
-
+# Day 3: Univariate & Bivariate Analysis & Visualization
 
 ```{r}
-##Day 3: Univariate & Bivariate Analysis & Visualization
 
 library(tidyverse) #load tidyverse packages
 NHIS_clean <- read.csv("Data/NHIS_clean.csv")  #import dataset
@@ -105,49 +102,64 @@ hist(NHIS_clean$WEIGHTLBTC_A, main="Weight Distribution", xlab="Weight")
 hist(NHIS_clean$HEIGHTTC_A, main="Height Distribution", xlab="Height")
 ```
 The code loads the dataset and explores key variables (age, weight, and height) by generating summary statistics, calculating additional measures for age, and creating histograms to visualize their distributions.The histogram shows that most weight values cluster between about 120 and 250 pounds, indicating a right-skewed distribution, while a small number of extremely high values near 1000 pounds suggest strong outliers or possible data entry errors.
+
 ```{r}
 ggplot(NHIS_clean, aes(x = AGEP_A)) + #plot using dataset
   geom_histogram(bins = 30) + #histogram within 30 bins
   labs(title="Age Distribution", x="Age", y="Count")  #title 
 ```
+
 The code uses ggplot2 to create a histogram of the age variable, displaying its distribution with labeled axes and a descriptive title.The histogram shows that ages are fairly spread out across a wide range (roughly 20 to 80), indicating a relatively even distribution, with a slight concentration in middle-aged groups and a few extreme values near the upper end suggesting potential outliers.
+
 ```{r}
 ggplot(NHIS_clean, aes(x = WEIGHTLBTC_A)) + #ggplot
   geom_histogram(bins = 30) +  #histogram of weight within 30 bins
   labs(title="Weight Distribution", x="Weight", y="Count") #add tittle
 ```
+
 The code uses ggplot2 to visualize the distribution of weight by creating a histogram with appropriate labels and a descriptive title.The histogram shows that most weight values are concentrated between about 120 and 250 pounds, forming a right-skewed distribution, while extremely high values near 1000 pounds indicate clear outliers or likely data entry errors.
+
 ```{R}
 ggplot(NHIS_clean, aes(x = HEIGHTTC_A)) + #ggplot
   geom_histogram(bins = 30) + #histogram of height within 30 bins
   labs(title="Height Distribution", x="Height", y="Count") #add tittle
 ```
+
 The code uses ggplot2 to create a histogram that visualizes the distribution of height, with clear axis labels and a descriptive title.The histogram shows that most height values are concentrated between about 60 and 72 inches, indicating a roughly normal distribution, while a small group of unusually high values (around 95–100 inches) suggests the presence of potential outliers or data entry errors.
+
 ```{r}
 #Boxplots
 boxplot(NHIS_clean$AGEP_A, main="Age Boxplot") #boxplot for age
 boxplot(NHIS_clean$WEIGHTLBTC_A, main="Weight Boxplot") #boxplot for weight
 boxplot(NHIS_clean$HEIGHTTC_A, main="Height Boxplot") #boxplot for height
 ```
+
 The code generates boxplots for age, weight, and height to visualize their distributions, highlighting the median, spread, and any potential outliers in each variable.
+
 ```{r}
 ggplot(NHIS_clean, aes(y = AGEP_A)) + #ggplot on y axis
   geom_boxplot() + #boxplot for age including median, quartiles, outliers
   labs(title="Age Boxplot") #add tittle
 ```
+
 The code uses ggplot2 to create a boxplot of age, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that the median age is around the mid-50s, with the middle 50% of values spread roughly between the late 30s and late 60s, indicating moderate variability, and no extreme outliers are clearly visible.
+
 ```{r}
 ggplot(NHIS_clean, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
   geom_boxplot() + #box plot to distribute data
   labs(title="Weight Boxplot") #tittle
 ```
+
 The code uses ggplot2 to create a boxplot of weight, visualizing its distribution, central tendency, and any potential outliers.The boxplot shows that most weight values are concentrated between roughly 140 and 220 pounds with a median around 180, indicating moderate spread, while a very extreme outlier near 1000 pounds highlights a likely data entry error or unusual value.
+
 ```{r}
 ggplot(NHIS_clean, aes(y = HEIGHTTC_A)) + #ggplot to y axis
   geom_boxplot() + #distribution to height
   labs(title="Height Boxplot") #add tittle
 ```
+
 The code uses ggplot2 to create a boxplot of height, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that most height values fall between about 64 and 70 inches with a median around 67 inches, indicating low to moderate variability, while several high values near 95–100 inches appear as outliers, suggesting possible data entry errors.
+
 ```{r}
 #Qualitative Variables
 #Kevin
@@ -251,104 +263,133 @@ ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
   geom_bar() +
   labs(title = "Life Satisfaction", x = "Category", y = "Count")
 ```
+
 ```{r}
 #04_bivariate_analysis.R 
-#Linda
 
 library(tidyverse)
 NHIS_clean <- read.csv("Data/NHIS_clean.csv")
 
 #Quantitative vs. Qualitative:
-boxplot(AGEP_A ~ SEX_A,
+boxplot(AGEP_A ~ SEX_A, #create boxplot for varbiables
         data = NHIS_clean,
-        main = "Age by Sex",
-        xlab = "Sex",
-        ylab = "Age")
+        main = "Age by Sex", # title
+        xlab = "Sex", # x axis label
+        ylab = "Age") #y axis label
 ```
+Key
+
+Male: 1 
+
+Female: 2
+
+Age distributions are similar across both sex groups, with comparable medians and spread, suggesting no significant difference in age by sex.
+
 ```{r}
-boxplot(AGEP_A ~ EDUCP_recode,
+boxplot(AGEP_A ~ EDUCP_recode, #create boxplot for variables
         data = NHIS_clean,
-        main = "Age by Education Level",
-        xlab = "Education Level",
-        ylab = "Age")
+        main = "Age by Education Level", #title
+        xlab = "Education Level", # x axis label
+        ylab = "Age") #y axis label
 ```
+The boxplot shows age changes a little by education level, but they’re still pretty similar overall. Higher education groups look like they have slightly higher median ages, while lower education groups are a bit younger. There’s a lot of overlap though so the difference isn’t that big.
+
 ```{r}
-ggplot(NHIS_clean, aes(x = factor(SEX_A), y = AGEP_A)) +
-  geom_boxplot() +
-  labs(title = "Age by Sex",
-       x = "Sex",
-       y = "Age")
+ggplot(NHIS_clean, aes(x = factor(SEX_A), y = AGEP_A)) + # create ggplot for varibles
+  geom_boxplot() + # assign boxplot
+  labs(title = "Age by Sex", #title
+       x = "Sex", # x axis variable
+       y = "Age") # y axis variable
 ```
+Key 
+
+Male: 1
+Female: 2
+
+The boxplot shows that age between the two sex groups is pretty similar overall. Both groups have around the same median age, maybe slightly higher for one group but not by much.
+
 ```{r}
-ggplot(NHIS_clean, aes(x = factor(EDUCP_recode), y = AGEP_A)) +
-  geom_boxplot() +
-  labs(title = "Age by Education Level",
-       x = "Education Level",
-       y = "Age")
+ggplot(NHIS_clean, aes(x = factor(EDUCP_recode), y = AGEP_A)) + #create ggplot for varaible
+  geom_boxplot() + # assign boxplot to ggplot
+  labs(title = "Age by Education Level", #create title
+       x = "Education Level", # x axis 
+       y = "Age") + coord_flip() # y axis
 ```
+The boxplot shows that age is pretty similar across all education levels. There are some small differences, like slightly higher median ages in certain groups, but overall the distributions overlap a lot. This suggests education level doesn’t really change age that much in this dataset.
+
 ```{r}
 #Qualitative vs. Qualitative:
-ggplot(NHIS_clean, 
+ggplot(NHIS_clean, # create ggplot for variables 
        aes(x = factor(PHSTAT_A), fill = factor(LSATIS4R_A))) +
-  geom_bar(position = "dodge") +
-  labs(title = "General Health vs Life Satisfaction",
-       x = "General Health",
-       y = "Count",
-       fill = "Life Satisfaction")
+  geom_bar(position = "dodge") + # assign as a bar graph
+  labs(title = "General Health vs Life Satisfaction", #title
+       x = "General Health", #x axis 
+       y = "Count", # y axis 
+       fill = "Life Satisfaction") # Key on the side
 ```
-#Quantitative vs. Quantitative:
-plot(NHIS_clean$HEIGHTTC_A,
-     NHIS_clean$WEIGHTLBTC_A,
-     main = "Height vs Weight",
-     xlab = "Height",
-     ylab = "Weight")
+Key
+
+1: Excellent
+2: Very good
+3: Good
+4: Fair
+5: Poor
+
+The chart shows a clear relationship between general health and life satisfaction. People who report excellent or very good health (1–2) tend to have higher life satisfaction, while those with fair or poor health (4–5) more often report lower satisfaction. There’s still some overlap, but overall better health is linked to better life satisfaction.
+
 ```{r}
-ggplot(NHIS_clean, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A)) +
-  geom_point(alpha = 0.5) +
-  labs(title = "Height vs Weight",
-       x = "Height",
-       y = "Weight")
+#Quantitative vs. Quantitative:
+plot(NHIS_clean$HEIGHTTC_A, # simple plot graph between two variables
+     NHIS_clean$WEIGHTLBTC_A,
+     main = "Height vs Weight", #title
+     xlab = "Height", # x axis 
+     ylab = "Weight") # y axis
 ```
+The scatterplot shows a positive relationship between height and weight. As height increases, weight also tends to increase, although there is a lot of variation at each height. The points are pretty spread out, so it’s not a perfect relationship but the general trend is still clear.
+
+```{r}
+ggplot(NHIS_clean, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A)) + #ggplot of two variables
+  geom_point(alpha = 0.5) + # assign as a scatter plot point graph
+  labs(title = "Height vs Weight", #title 
+       x = "Height", #x axis
+       y = "Weight") # y axis
+```
+```{r}
 cor(NHIS_clean$HEIGHTTC_A,
     NHIS_clean$WEIGHTLBTC_A,
     use = "complete.obs")
-
-#There is a strong positive relationship between height and weight, indicating that as height increases, weight also tends to increase. The high correlation coefficient (r = 0.77) suggests a strong linear association between the two variables.
 ```
 
+There is a moderate positive relationship between height and weight, indicating that as height increases, weight also tends to increase. The correlation coefficient (r = 0.50) suggests a moderate linear association between the two variables.
 
+
+# Day 4: Multivariate Analysis & Report Drafting
 
 ```{r}
-##Day 4: Multivariate Analysis & Report Drafting
-
+# Select variables and remove missing values
 multi_data <- NHIS_clean %>%
   select(HEIGHTTC_A, WEIGHTLBTC_A, SEX_A, EDUCP_recode, PHSTAT_A, AGEP_A) %>%
   na.omit()
 
+# Convert variables to factors 
 multi_data$SEX_A <- as.factor(multi_data$SEX_A)
 multi_data$EDUCP_recode <- as.factor(multi_data$EDUCP_recode)
 multi_data$PHSTAT_A <- as.factor(multi_data$PHSTAT_A)
 
+# Scatterolot of height vs weight, colored by sex and faceted by education 
 ggplot(multi_data, aes(x = HEIGHTTC_A, y = WEIGHTLBTC_A, color = SEX_A)) +
-  geom_point(alpha = 0.6) +
-  facet_wrap(~ EDUCP_recode) +
+  geom_point(alpha = 0.6) + # points with transparency 
+  facet_wrap(~ EDUCP_recode) + #split by education level
   labs(
     title = "Height vs Weight by Sex and Education",
     x = "Height (cm)",
     y = "Weight (lbs)",
     color = "Sex"
   ) +
-  theme_minimal()
+  theme_minimal() # clean theme
 
 ```
-
-
-
-```{r}
-# Day 5: Finalizing, Communicating & Submission
-
-```
-
+The scatterplots show a positive relationship between height and weight across all education levels. This pattern looks pretty consistent regardless of education, and both sex groups follow a similar trend. There are some small differences, but overall the relationship between height and weight stays about the same.
 
 
 
