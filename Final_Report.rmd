@@ -142,6 +142,7 @@ ggplot(NHIS_Data_2021, aes(y = HEIGHTTC_A)) +
 ```
 ```{r}
 #Qualitative Variables
+#Kevin
 #Frequency Tables
 table(NHIS_Data_2021$SEX_A)
 table(NHIS_Data_2021$HISPALLP_A)
@@ -242,11 +243,13 @@ ggplot(NHIS_Data_2021, aes(x = factor(LSATIS4R_A))) +
   geom_bar() +
   labs(title = "Life Satisfaction", x = "Category", y = "Count")
 ```
-#04_bivariate_analysis.R
+```{r}
+#04_bivariate_analysis.R 
+#Linda
 
 library(tidyverse)
 NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv")
-```{r}
+
 #Quantitative vs. Qualitative:
 boxplot(AGEP_A ~ SEX_A,
         data = NHIS_Data_2021,
