@@ -19,7 +19,7 @@ library(psych)
 
 ```{r}
 library(readr) #loaded readr package for data import functions
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv") #imported NHIS 2021 dataset from Data folder
+NHIS_Data_2021 <- read_csv("Data/NHIS_Data_2021.csv") #imported NHIS 2021 dataset from Data folder
 View(NHIS_Data_2021) #opened dataset in spreadsheet view
 str(NHIS_Data_2021) #displayed structure of dataset
 summary(NHIS_Data_2021) #generated summary statistics for all variables to check ranges and missing values
