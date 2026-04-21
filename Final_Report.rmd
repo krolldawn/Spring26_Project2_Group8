@@ -170,14 +170,16 @@ table(NHIS_clean$EDUCP_recode)
 table(NHIS_clean$PHSTAT_A)
 table(NHIS_clean$LSATIS4R_A)
 ```
+The frequency tables show that there are 26,037 participants in the sample dataset. From those participants, females have a slightly higher representation. The majority of respondents are Non-Hispanic White. The majority of individuals have an education College Graduate or Higher. Most participants reported Good to Very Good general health. The majority of participants reported being Very Satisfied with life.
 ```{r}
 #Bar Plots
 barplot(table(NHIS_clean$SEX_A), main="Sex Distribution")
-barplot(table(NHIS_clean$HISPALLP_A), main="Hispanic Status")
+barplot(table(NHIS_clean$HISPALLP_A), main="Race/Ethnicity")
 barplot(table(NHIS_clean$EDUCP_recode), main="Education Level")
 barplot(table(NHIS_clean$PHSTAT_A), main="Health Status")
 barplot(table(NHIS_clean$LSATIS4R_A), main="Life Satisfaction")
 ```
+
 ```{r}
 ggplot(NHIS_clean, aes(x = factor(SEX_A))) +
   geom_bar() +
@@ -186,7 +188,7 @@ ggplot(NHIS_clean, aes(x = factor(SEX_A))) +
 ```{r}
 ggplot(NHIS_clean, aes(x = factor(HISPALLP_A))) +
   geom_bar() +
-  labs(title="Hispanic Status", x="Category", y="Count")
+  labs(title="Race/Ethnicity", x="Category", y="Count")
 ```
 ```{r}
 ggplot(NHIS_clean, aes(x = factor(EDUCP_recode))) +
@@ -203,6 +205,8 @@ ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
   geom_bar() +
   labs(title="Life Satisfaction", x="Category", y="Count")
 ```
+The barplots show that for Sex Distribution, Females have a higher count. For Race/Ethnicity, Non-Hispanic White is over represented, with more than 3 times the count of the second highest category, Hispanic. For Education Level, the lowest category is Less Than High School, with College Graduate or Better almost 5 times more. The 2 main Health Statuses reported are Good and Very Good Health. The majority of participants reported being Satisfied and Very Satisfied with life, with very few reporting Dissatisfied and even less Very Dissatisfied.
+
 ```{r}
 #Qualitative Variables
 #Frequency tables
@@ -220,7 +224,7 @@ barplot(table(NHIS_clean$SEX_A),
 ```
 ```{r}
 barplot(table(NHIS_clean$HISPALLP_A),
-        main = "Hispanic Status",
+        main = "Race/Ethnicity",
         xlab = "Category", ylab = "Count")
 ```
 ```{r}
