@@ -170,6 +170,7 @@ table(NHIS_clean$PHSTAT_A)
 table(NHIS_clean$LSATIS4R_A)
 ```
 The frequency tables show that there are 26,037 participants in the sample dataset. From those participants, females have a slightly higher representation. The majority of respondents are Non-Hispanic White. The majority of individuals have an education College Graduate or Higher. Most participants reported Good to Very Good general health. The majority of participants reported being Very Satisfied with life.
+
 ```{r}
 #Bar Plots
 barplot(table(NHIS_clean$SEX_A), main="Sex Distribution")
