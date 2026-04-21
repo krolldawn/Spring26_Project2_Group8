@@ -117,7 +117,7 @@ ggplot(NHIS_clean, aes(x = WEIGHTLBTC_A)) + #ggplot
   labs(title="Weight Distribution", x="Weight", y="Count") #add tittle
 ```
 
-The code uses ggplot2 to visualize the distribution of weight by creating a histogram with appropriate labels and a descriptive title.The histogram shows that most weight values are concentrated between about 120 and 250 pounds, forming a right-skewed distribution, while extremely high values near 1000 pounds indicate clear outliers or likely data entry errors.
+The code uses ggplot2 to visualize the distribution of weight by creating a histogram with appropriate labels and a descriptive title.The weight distribution is slightly right-skewed, with most values concentrated between about 130 and 220 pounds. There are fewer higher-weight observations extending toward 300 pounds, indicating a gradual tail on the upper end.
 
 ```{R}
 ggplot(NHIS_clean, aes(x = HEIGHTTC_A)) + #ggplot
@@ -134,7 +134,7 @@ boxplot(NHIS_clean$WEIGHTLBTC_A, main="Weight Boxplot") #boxplot for weight
 boxplot(NHIS_clean$HEIGHTTC_A, main="Height Boxplot") #boxplot for height
 ```
 
-The code generates boxplots for age, weight, and height to visualize their distributions, highlighting the median, spread, and any potential outliers in each variable.
+The code generates boxplots for age, weight, and height to visualize their distributions, highlighting the median, spread, and any potential outliers in each variable.The median weight is around 170 pounds, with most values falling between roughly 150 and 200 pounds. There are several high-end outliers above about 280 pounds, indicating a slight right skew in the distribution.
 
 ```{r}
 ggplot(NHIS_clean, aes(y = AGEP_A)) + #ggplot on y axis
@@ -142,7 +142,7 @@ ggplot(NHIS_clean, aes(y = AGEP_A)) + #ggplot on y axis
   labs(title="Age Boxplot") #add tittle
 ```
 
-The code uses ggplot2 to create a boxplot of age, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that the median age is around the mid-50s, with the middle 50% of values spread roughly between the late 30s and late 60s, indicating moderate variability, and no extreme outliers are clearly visible.
+The code uses ggplot2 to create a boxplot of age, allowing visualization of its distribution, central tendency, and potential outliers.The median age is around the mid-50s, with the middle 50% of values roughly between about 40 and 70 years. The distribution appears fairly symmetric with no strong outliers, indicating ages are relatively evenly spread.
 
 ```{r}
 ggplot(NHIS_clean, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
@@ -150,7 +150,7 @@ ggplot(NHIS_clean, aes(y = WEIGHTLBTC_A)) + #ggplot on y axis
   labs(title="Weight Boxplot") #tittle
 ```
 
-The code uses ggplot2 to create a boxplot of weight, visualizing its distribution, central tendency, and any potential outliers.The boxplot shows that most weight values are concentrated between roughly 140 and 220 pounds with a median around 180, indicating moderate spread, while a very extreme outlier near 1000 pounds highlights a likely data entry error or unusual value.
+The code uses ggplot2 to create a boxplot of weight, visualizing its distribution, central tendency, and any potential outliers.The median weight is around 170–175 pounds, with the middle 50% of values roughly between about 150 and 200 pounds. There are several high-value outliers near 280–300 pounds, indicating a right-skewed distribution.
 
 ```{r}
 ggplot(NHIS_clean, aes(y = HEIGHTTC_A)) + #ggplot to y axis
@@ -158,7 +158,7 @@ ggplot(NHIS_clean, aes(y = HEIGHTTC_A)) + #ggplot to y axis
   labs(title="Height Boxplot") #add tittle
 ```
 
-The code uses ggplot2 to create a boxplot of height, allowing visualization of its distribution, central tendency, and potential outliers.The boxplot shows that most height values fall between about 64 and 70 inches with a median around 67 inches, indicating low to moderate variability, while several high values near 95–100 inches appear as outliers, suggesting possible data entry errors.
+The code uses ggplot2 to create a boxplot of height, allowing visualization of its distribution, central tendency, and potential outliers.The median height is around 66 inches, with the middle 50% of values roughly between 64 and 70 inches. The distribution appears fairly symmetric with no noticeable outliers, indicating consistent height values.
 
 ```{r}
 #Qualitative Variables
