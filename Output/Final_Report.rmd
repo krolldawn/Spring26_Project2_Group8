@@ -11,6 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(ggplot2)
 library(dplyr)
 library(psych)
+library(here)
 ```
 
 
@@ -19,7 +20,7 @@ library(psych)
 
 ```{r}
 library(readr) #loaded readr package for data import functions
-NHIS_Data_2021 <- read_csv("Data/NHIS_Data_2021.csv") #imported NHIS 2021 dataset from Data folder
+NHIS_Data_2021 <- read.csv(here("Data","NHIS_Data_2021.csv")) #imported NHIS 2021 dataset from Data folder
 View(NHIS_Data_2021) #opened dataset in spreadsheet view
 str(NHIS_Data_2021) #displayed structure of dataset
 summary(NHIS_Data_2021) #generated summary statistics for all variables to check ranges and missing values
@@ -33,7 +34,7 @@ head(NHIS_Data_2021) #displayed first 6 rows of dataset
 #Task 1: Variable Selection & Missing Value Check
 library(tidyverse) #loaded tidyverse
 
-NHIS_Data_2021 <- read.csv("Data/NHIS_Data_2021.csv") #loaded dataset
+NHIS_Data_2021 <- read.csv(here("Data","NHIS_Data_2021.csv")) #loaded dataset
 summary(NHIS_Data_2021) #loaded summary of data to see range of variables
 
 NHIS_vars <- NHIS_Data_2021 %>% #created subset of cleaned dataset with only needed variables
@@ -77,7 +78,7 @@ NHIS_clean <- NHIS_clean %>%
 
 summary(NHIS_clean) #loaded summary of cleaned dataset to confirm recoding worked.
 
-write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cleaned dataset as CSV file
+write.csv(NHIS_clean,(here("Data","nhis_clean.csv")), row.names = FALSE) #saved final cleaned dataset as CSV file
 
 ```
 
@@ -86,7 +87,7 @@ write.csv(NHIS_clean, "Data/NHIS_clean.csv", row.names = FALSE) #saved final cle
 ```{r}
 
 library(tidyverse) #load tidyverse packages
-NHIS_clean <- read.csv("Data/NHIS_clean.csv")  #import dataset
+NHIS_clean <- read.csv((here("Data","NHIS_clean.csv")))  #import dataset
 
 summary(NHIS_clean$AGEP_A) #summary stats on mean,median, mode...
 summary(NHIS_clean$WEIGHTLBTC_A) #summary stats for weight
@@ -211,7 +212,7 @@ The barplots show that for Sex Distribution, Females have a higher count. For Ra
 #04_bivariate_analysis.R 
 
 library(tidyverse)
-NHIS_clean <- read.csv("Data/NHIS_clean.csv")
+NHIS_clean <- read.csv((here("Data","NHIS_clean.csv")))
 
 #Quantitative vs. Qualitative:
 boxplot(AGEP_A ~ SEX_A, #create boxplot for varbiables
