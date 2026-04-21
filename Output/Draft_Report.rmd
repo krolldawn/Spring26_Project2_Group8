@@ -162,7 +162,6 @@ The code uses ggplot2 to create a boxplot of height, allowing visualization of i
 
 ```{r}
 #Qualitative Variables
-#Kevin
 #Frequency Tables
 table(NHIS_clean$SEX_A)
 table(NHIS_clean$HISPALLP_A)
@@ -207,66 +206,6 @@ ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
 ```
 The barplots show that for Sex Distribution, Females have a higher count. For Race/Ethnicity, Non-Hispanic White is over represented, with more than 3 times the count of the second highest category, Hispanic. For Education Level, the lowest category is Less Than High School, with College Graduate or Better almost 5 times more. The 2 main Health Statuses reported are Good and Very Good Health. The majority of participants reported being Satisfied and Very Satisfied with life, with very few reporting Dissatisfied and even less Very Dissatisfied.
 
-```{r}
-#Qualitative Variables
-#Frequency tables
-table(NHIS_clean$SEX_A)
-table(NHIS_clean$HISPALLP_A)
-table(NHIS_clean$EDUCP_recode)
-table(NHIS_clean$PHSTAT_A)
-table(NHIS_clean$LSATIS4R_A)
-```
-```{r}
-#Bar Plots
-barplot(table(NHIS_clean$SEX_A),
-        main = "Sex Distribution",
-        xlab = "Sex", ylab = "Count")
-```
-```{r}
-barplot(table(NHIS_clean$HISPALLP_A),
-        main = "Race/Ethnicity",
-        xlab = "Category", ylab = "Count")
-```
-```{r}
-barplot(table(NHIS_clean$EDUCP_recode),
-        main = "Education Level",
-        xlab = "Category", ylab = "Count")
-```
-```{r}
-barplot(table(NHIS_clean$PHSTAT_A),
-        main = "Health Status",
-        xlab = "Category", ylab = "Count")
-```
-```{r}
-barplot(table(NHIS_clean$LSATIS4R_A),
-        main = "Life Satisfaction",
-        xlab = "Category", ylab = "Count")
-```
-```{r}
-ggplot(NHIS_clean, aes(x = factor(SEX_A))) +
-  geom_bar() +
-  labs(title = "Sex Distribution", x = "Sex", y = "Count")
-```
-```{r}
-ggplot(NHIS_clean, aes(x = factor(HISPALLP_A))) +
-  geom_bar() +
-  labs(title = "Hispanic Status", x = "Category", y = "Count")
-```
-```{r}
-ggplot(NHIS_clean, aes(x = factor(EDUCP_recode))) +
-  geom_bar() +
-  labs(title = "Education Level", x = "Category", y = "Count")
-```
-```{r}
-ggplot(NHIS_clean, aes(x = factor(PHSTAT_A))) +
-  geom_bar() +
-  labs(title = "Health Status", x = "Category", y = "Count")
-```
-```{r}
-ggplot(NHIS_clean, aes(x = factor(LSATIS4R_A))) +
-  geom_bar() +
-  labs(title = "Life Satisfaction", x = "Category", y = "Count")
-```
 
 ```{r}
 #04_bivariate_analysis.R 
